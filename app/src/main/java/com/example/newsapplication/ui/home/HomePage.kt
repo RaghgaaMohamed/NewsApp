@@ -13,7 +13,7 @@ import com.google.android.material.tabs.TabLayout
 import com.route.base.BaseActivity
 
 class HomePage : BaseActivity<ActivityHomePageBinding,HomeViewModel>() ,TabLayout.OnTabSelectedListener ,Navigator{
-    var progressImage=findViewById<ProgressBar>(R.id.progress_bar_image)
+
     lateinit var adapter: NewsAdapter
 
     override fun getlayoutId(): Int {
@@ -27,6 +27,7 @@ class HomePage : BaseActivity<ActivityHomePageBinding,HomeViewModel>() ,TabLayou
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         viewDataBinding.vm=viewModel
         setUpnews()
         viewModel.getSources()
@@ -49,12 +50,7 @@ class HomePage : BaseActivity<ActivityHomePageBinding,HomeViewModel>() ,TabLayou
                 viewDataBinding.progressBar.visibility = View.GONE
         })
 
-         viewModel.showprogressImageLiveData.observe(this, Observer { show ->
-             if (show)
-                progressImage.visibility=View.VISIBLE
-             else
-                 progressImage.visibility=View.GONE
-         })
+
 
         viewModel.sourcesLiveData.observe(this, Observer { sourcesList ->
             showSourcesinTabLayout(sourcesList)

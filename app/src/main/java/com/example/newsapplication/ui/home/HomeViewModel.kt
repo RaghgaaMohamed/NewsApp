@@ -59,6 +59,7 @@ class HomeViewModel : BaseViewModel<Navigator>(){
          ApiManager.getApis().getNewsEverything(Constance.apikey, "en", "", sourceId ?: "")
             .enqueue(object : Callback<EverythingResponse> {
                 override fun onFailure(call: Call<EverythingResponse>, t: Throwable) {
+                    showprogressLiveData.value=false
                     showprogressImageLiveData.value=false
                     messageLiveData.value=t.localizedMessage
                 }
@@ -66,7 +67,9 @@ class HomeViewModel : BaseViewModel<Navigator>(){
 
                 override fun onResponse(call: Call<EverythingResponse>,
                                         response: Response<EverythingResponse>) {
-                 showprogressImageLiveData.value=false
+                 showprogressLiveData.value=false
+                    showprogressImageLiveData.value=false
+
                     if (response.isSuccessful) {
                         showNewsLiveData.value=response.body()?.articles
 
