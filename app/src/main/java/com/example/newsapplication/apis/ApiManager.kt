@@ -22,7 +22,7 @@ class ApiManager {
 
                 retrofit = Retrofit.Builder()
                    .baseUrl("https://newsapi.org/v2/")
-                    .client(client)
+                   .client(client)
                    .addConverterFactory(GsonConverterFactory.create())
                    .build()
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import com.example.newsapplication.ui.home.HomePage
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun gotoHomePage() {
-     val intent = Intent(this,HomePage::class.java)
+     val intent = Intent(this, HomePage::class.java)
         startActivity(intent)
         finish()
     }

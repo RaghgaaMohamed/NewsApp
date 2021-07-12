@@ -1,13 +1,33 @@
 package com.route.base
 
 import android.content.DialogInterface
+import android.os.Bundle
+import android.view.ContextMenu
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModel
 import com.google.android.material.snackbar.Snackbar
 
-open class BaseActivity :AppCompatActivity() {
+abstract class BaseActivity<DB:ViewDataBinding,VM:ViewModel> :AppCompatActivity() {
+    lateinit var viewDataBinding: DB
+    lateinit var viewModel:VM
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    viewDataBinding=DataBindingUtil.setContentView(this,getlayoutId())
+    viewModel=initializeViewModel()
+    }
+
+    abstract fun initializeViewModel():VM
+    abstract fun getlayoutId(): Int
+
+
+
+
     fun showDialoge(title:String?=null,
                     message:String,
                     posActionName:String?=null,
